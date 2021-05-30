@@ -1,8 +1,8 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
     mode: "production",
-    entry: './src/antlr4/index.js',
+    entry: './antlr4/index.js',
     output: {
         filename: 'antlr4.js',
         path: path.resolve(__dirname, 'dist'),
@@ -10,19 +10,11 @@ module.exports = {
         library: "antlr4",
         libraryTarget: 'window'
     },
-    node: {
-        module: "empty",
-        net: "empty",
-        fs: "empty"
-    },
+    resolve: { fallback: { fs: false } },
     target: "web",
     module: {
         rules: [{
             test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader',
-            }
         }]
     }
-};
+}
